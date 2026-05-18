@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Momentum Habit Tracker</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Habit overview">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path d="M5 12.5 10 17 19 7" />
+            </svg>
+          </div>
+          <div>
+            <p>Momentum</p>
+            <span>Habit Tracker</span>
+          </div>
+        </div>
+
+        <section class="today-panel">
+          <p class="eyebrow" id="todayLabel">Today</p>
+          <h1>Build the day one check at a time.</h1>
+          <div class="progress-ring" aria-label="Daily completion">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="ring-track" cx="60" cy="60" r="50"></circle>
+              <circle class="ring-value" id="ringValue" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div>
+              <strong id="dailyPercent">0%</strong>
+              <span>complete</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Stats">
+          <div>
+            <span id="activeCount">0</span>
+            <p>Active</p>
+          </div>
+          <div>
+            <span id="doneCount">0</span>
+            <p>Done today</p>
+          </div>
+          <div>
+            <span id="bestStreak">0</span>
+            <p>Best streak</p>
+          </div>
+          <div>
+            <span id="weekRate">0%</span>
+            <p>This week</p>
+          </div>
+        </section>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Daily Dashboard</p>
+            <h2>Your habits</h2>
+          </div>
+          <button class="primary-button" id="openHabitForm" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            Add habit
+          </button>
+        </header>
+
+        <section class="controls" aria-label="Habit controls">
+          <label class="search-field">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m21 21-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" />
+            </svg>
+            <input id="searchInput" type="search" placeholder="Search habits" autocomplete="off" />
+          </label>
+          <div class="segmented-control" role="tablist" aria-label="Filter habits">
+            <button class="active" type="button" data-filter="all">All</button>
+            <button type="button" data-filter="open">Open</button>
+            <button type="button" data-filter="done">Done</button>
+          </div>
+        </section>
+
+        <section class="week-strip" aria-label="Weekly completion" id="weekStrip"></section>
+
+        <section class="habit-list" id="habitList" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <dialog class="habit-dialog" id="habitDialog">
+      <form method="dialog" class="habit-form" id="habitForm">
+        <div class="form-header">
+          <div>
+            <p class="eyebrow" id="formMode">New habit</p>
+            <h3>Track a routine</h3>
+          </div>
+          <button class="icon-button" id="closeHabitForm" type="button" aria-label="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <input type="hidden" id="habitId" />
+        <label>
+          Habit name
+          <input id="habitName" type="text" maxlength="42" placeholder="Drink water" required />
+        </label>
+
+        <label>
+          Goal
+          <input id="habitGoal" type="text" maxlength="64" placeholder="8 glasses before dinner" />
+        </label>
+
+        <fieldset>
+          <legend>Category</legend>
+          <div class="category-options">
+            <label><input type="radio" name="category" value="Health" checked />Health</label>
+            <label><input type="radio" name="category" value="Focus" />Focus</label>
+            <label><input type="radio" name="category" value="Mind" />Mind</label>
+            <label><input type="radio" name="category" value="Home" />Home</label>
+          </div>
+        </fieldset>
+
+        <label>
+          Accent
+          <select id="habitColor">
+            <option value="coral">Coral</option>
+            <option value="teal">Teal</option>
+            <option value="indigo">Indigo</option>
+            <option value="amber">Amber</option>
+          </select>
+        </label>
+
+        <button class="primary-button full" type="submit">Save habit</button>
+      </form>
+    </dialog>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
